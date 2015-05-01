@@ -1,3 +1,4 @@
+package dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import javax.sql.DataSource;
 public class UserDao {
 
     private DataSource dataSource;
+
     private JdbcTemplate jdbcTemplate;
 
 

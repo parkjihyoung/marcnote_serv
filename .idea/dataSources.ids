@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - marcnote" uuid="8299f2e8-355f-4f91-aa69-9333a9ff79f0">
+    <database-info product="MySQL" version="5.6.22" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="marcnote"/>
+    <table name="group_user" schema="" catalog="marcnote" type="TABLE">
+      <column name="user_id" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="level" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="reg_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="user_id,group_id"/>
+      <foreign-key name="fk_users_has_groups_groups1" columns="group_id" ref-table="groups" ref-schema="" ref-catalog="marcnote" ref-columns="group_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_users_has_groups_users1" columns="user_id" ref-table="users" ref-schema="" ref-catalog="marcnote" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_users_has_groups_groups1_idx" unique="false" columns="group_id"/>
+      <index name="fk_users_has_groups_users1_idx" unique="false" columns="user_id"/>
+    </table>
+    <table name="groups" schema="" catalog="marcnote" type="TABLE">
+      <column name="group_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="master_id" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="cdate" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="description" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="group_id"/>
+      <exported-key name="fk_users_has_groups_groups1" table="group_user" schema="" catalog="marcnote" columns="group_id"/>
+      <exported-key name="fk_schedules_groups1" table="schedules" schema="" catalog="marcnote" columns="group_id"/>
+    </table>
+    <table name="schedules" schema="" catalog="marcnote" type="TABLE">
+      <column name="uid" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="titile" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="start_date" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="end_date" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="start_time" sqlType="VARCHAR" precision="5" scale="0" nullable="true" jdbcType="12" def="JzA4OjAwJw=="/>
+      <column name="end_time" sqlType="VARCHAR" precision="5" scale="0" nullable="true" jdbcType="12" def="JzE4OjAwJw=="/>
+      <column name="comment" sqlType="BLOB" precision="65535" scale="0" nullable="true" jdbcType="-4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="uid"/>
+      <foreign-key name="fk_schedules_groups1" columns="group_id" ref-table="groups" ref-schema="" ref-catalog="marcnote" ref-columns="group_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_schedules_groups1_idx" unique="false" columns="group_id"/>
+    </table>
+    <table name="users" schema="" catalog="marcnote" type="TABLE">
+      <column name="user_id" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="passwd" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="reg_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="del_flag" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <exported-key name="fk_users_has_groups_users1" table="group_user" schema="" catalog="marcnote" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
